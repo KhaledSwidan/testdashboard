@@ -4,21 +4,27 @@ import axios from 'axios';
 import type { StoreType } from '../types/store';
 
 const BASE_URL = 'https://41.38.56.140/api/StoreTypes';
-const IMAGE_BASE_URL = 'https://41.38.56.140';
+const IMAGE_BASE_URL = 'https://41.38.56.140/Icons';
 
 // إنشاء نسخة من axios
 const api = axios.create({
   baseURL: BASE_URL,
   headers: {
     Accept: 'application/json',
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+    'Access-Control-Allow-Headers': 'Content-Type',
   },
+  timeout: 10000,
 });
 
-export const getImageUrl = (iconPath?: string): string => {
-  if (!iconPath) return '';
-  return iconPath.startsWith('http')
-    ? iconPath
-    : `${IMAGE_BASE_URL}/${iconPath}`;
+export const getImageUrl = (
+  iconPath?: string,
+  fallback = '/placeholderUser.png'
+): string => {
+  if (!iconPath) return fallback;
+  return `${IMAGE_BASE_URL}/${iconPath}`;
 };
 
 // =======================
@@ -140,4 +146,3 @@ export const deleteStoreType = async (id: number): Promise<void> => {
     throw error;
   }
 };
-

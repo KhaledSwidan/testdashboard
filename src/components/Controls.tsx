@@ -1,3 +1,5 @@
+// src/components/Controls.tsx
+
 import { Search, User } from 'lucide-react';
 import { navItems } from '../data/controls';
 import AddNewShop from './AddNewShop';

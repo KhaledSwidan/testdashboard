@@ -1,3 +1,5 @@
+// src/App.tsx
+
 import './App.css';
 import StoreTypesDashboard from './pages/StoreTypesPage';
 
